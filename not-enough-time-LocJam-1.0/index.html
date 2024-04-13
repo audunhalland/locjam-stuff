@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <title>löve.js</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <div id="spinner" class="pending"></div>
+    <script>
+      var text_translated, text_credits;
+      const request = new XMLHttpRequest();
+      request.open("GET", "text_translated.lua", false);
+      request.send(null);
+      if (request.status == 200)
+        text_translated = request.responseText;
+      request.open("GET", "text_credits.lua", false);
+      request.send(null);
+      if (request.status == 200)
+        text_credits = request.responseText;
+      if (!text_translated || !text_credits)
+        alert("Could not load translation files.");
+      else
+        console.log("Translation loaded.");
+    </script>
+    <script type="text/javascript" src="fmod/fmodstudio.js"></script>
+    <script type="text/javascript" src="init_fmod.js"></script>
+    <script src="player.js?g=game.zip"></script>
+  </body>
+</html>
